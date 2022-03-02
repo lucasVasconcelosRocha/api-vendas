@@ -10,7 +10,7 @@ public class Produto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long id;
+    private Integer id;
 
     @Column(name = "nome", length = 100)
     private String descricao;
@@ -18,11 +18,11 @@ public class Produto {
     @Column(name = "preco_unitario")
     private BigDecimal preco;
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

@@ -20,15 +20,11 @@ public class ClienteService {
        return repository.save(cliente);
     }
 
-    public List<Cliente> listClientes() {
-        return repository.findAll();
-    }
-
     public List<Cliente> findByName(String nome) {
         return repository.findByNomeLike(nome);
     }
 
-    public void deletar(Cliente cliente) {
+    public void delete(Cliente cliente) {
         repository.delete(cliente);
     }
 

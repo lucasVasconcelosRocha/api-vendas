@@ -1,5 +1,5 @@
 .idea
-
+target/
 src/main/resources/application-development.properties
 src/main/resources/application-production.properties
 src/main/resources/application.properties
