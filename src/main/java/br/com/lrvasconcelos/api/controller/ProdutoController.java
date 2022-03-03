@@ -1,7 +1,7 @@
 package br.com.lrvasconcelos.api.controller;
 
 import br.com.lrvasconcelos.domain.entity.Produto;
-import br.com.lrvasconcelos.service.ProdutoService;
+import br.com.lrvasconcelos.service.impl.ProdutoServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
@@ -16,7 +16,7 @@ import java.util.List;
 public class ProdutoController {
 
     @Autowired
-    private ProdutoService service;
+    private ProdutoServiceImpl service;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -37,7 +37,7 @@ public class ProdutoController {
         service.findProductById(id)
                 .map(produto -> {
                     service.deleteProduct(produto);
-                    return produto;
+                    return Void.TYPE;
                 }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Produto não encontrado"));
     }
 
