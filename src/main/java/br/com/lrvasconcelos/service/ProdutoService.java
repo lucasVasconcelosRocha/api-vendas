@@ -10,7 +10,7 @@ public interface ProdutoService {
 
     Produto create(Produto produto);
 
-    List<Produto> listProducts(Example filters);
+    List<Produto> listProducts(Example<Produto> filters);
 
     Optional<Produto> findProductById(Integer id);
 

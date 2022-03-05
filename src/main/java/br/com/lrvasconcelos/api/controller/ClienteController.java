@@ -62,7 +62,7 @@ public class ClienteController {
                 .withIgnoreCase()
                 .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
 
-        Example example = Example.of(filtro, matcher);
+        Example<Cliente> example = Example.of(filtro, matcher);
         return service.findByFilters(example);
     }
 

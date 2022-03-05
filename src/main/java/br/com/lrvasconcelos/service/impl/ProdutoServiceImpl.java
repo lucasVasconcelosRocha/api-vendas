@@ -22,7 +22,7 @@ public class ProdutoServiceImpl implements ProdutoService {
     }
 
     @Override
-    public List<Produto> listProducts(Example filters) {
+    public List<Produto> listProducts(Example<Produto> filters) {
         return repository.findAll(filters);
     }
 

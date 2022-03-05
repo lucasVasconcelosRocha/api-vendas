@@ -33,7 +33,7 @@ public class ClienteServiceImpl implements ClienteService {
     }
 
     @Override
-    public List<Cliente> findByFilters(Example filtros) {
+    public List<Cliente> findByFilters(Example<Cliente> filtros) {
         return repository.findAll(filtros);
     }
 

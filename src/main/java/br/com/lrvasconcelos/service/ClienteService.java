@@ -13,7 +13,7 @@ public interface ClienteService {
 
     void delete(Cliente cliente);
 
-    List<Cliente> findByFilters(Example filtros);
+    List<Cliente> findByFilters(Example<Cliente> filtros);
 
     Optional<Cliente> findById(Integer id);
 }

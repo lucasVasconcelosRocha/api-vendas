@@ -60,7 +60,7 @@ public class ProdutoController {
                 .withIgnoreCase()
                 .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
 
-        Example example = Example.of(filtro, matcher);
+        Example<Produto> example = Example.of(filtro, matcher);
         return service.listProducts(example);
     }
 

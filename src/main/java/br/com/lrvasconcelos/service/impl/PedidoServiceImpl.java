@@ -1,7 +1,7 @@
 package br.com.lrvasconcelos.service.impl;
 
-import br.com.lrvasconcelos.api.controller.dto.ItemPedidoDTO;
-import br.com.lrvasconcelos.api.controller.dto.PedidoDTO;
+import br.com.lrvasconcelos.api.dto.ItemPedidoDTO;
+import br.com.lrvasconcelos.api.dto.PedidoDTO;
 import br.com.lrvasconcelos.domain.entity.Cliente;
 import br.com.lrvasconcelos.domain.entity.ItemPedido;
 import br.com.lrvasconcelos.domain.entity.Pedido;

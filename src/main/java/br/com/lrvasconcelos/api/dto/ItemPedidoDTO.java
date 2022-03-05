@@ -1,4 +1,4 @@
-package br.com.lrvasconcelos.api.controller.dto;
+package br.com.lrvasconcelos.api.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
