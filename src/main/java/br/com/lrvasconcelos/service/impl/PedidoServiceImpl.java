@@ -6,10 +6,12 @@ import br.com.lrvasconcelos.domain.entity.Cliente;
 import br.com.lrvasconcelos.domain.entity.ItemPedido;
 import br.com.lrvasconcelos.domain.entity.Pedido;
 import br.com.lrvasconcelos.domain.entity.Produto;
+import br.com.lrvasconcelos.domain.enums.StatusPedido;
 import br.com.lrvasconcelos.domain.repository.ClientesRepository;
 import br.com.lrvasconcelos.domain.repository.ItensPedidoRepository;
 import br.com.lrvasconcelos.domain.repository.PedidosRepository;
 import br.com.lrvasconcelos.domain.repository.ProdutosRepository;
+import br.com.lrvasconcelos.exceptions.PedidoNaoEncontradoException;
 import br.com.lrvasconcelos.exceptions.RegraNegocioException;
 import br.com.lrvasconcelos.service.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -44,6 +47,7 @@ public class PedidoServiceImpl implements PedidoService {
         pedido.setCliente(cliente);
         pedido.setTotal(dto.getTotal());
         pedido.setDataPedido(LocalDate.now());
+        pedido.setStatus(StatusPedido.REALIZADO);
 
         List<ItemPedido> itensPedido = convertItens(pedido, dto.getItens());
         pedidosRepository.save(pedido);
@@ -71,5 +75,21 @@ public class PedidoServiceImpl implements PedidoService {
                     itemPedido.setProduto(produto);
                     return itemPedido;
                 }).collect(Collectors.toList());
+    }
+
+    @Override
+    public Optional<Pedido> obterPedidoCompleto(Integer id) {
+        return pedidosRepository.findByIdFetchItens(id);
+    }
+
+    @Override
+    @Transactional
+    public void atualizaStatus(Integer id, StatusPedido statusPedido) {
+        pedidosRepository
+                       .findById(id)
+                       .map(pedido -> {
+                           pedido.setStatus(statusPedido);
+                           return pedidosRepository.save(pedido);
+                       }).orElseThrow(() -> new PedidoNaoEncontradoException("Pedido não encontrado"));
     }
 }
